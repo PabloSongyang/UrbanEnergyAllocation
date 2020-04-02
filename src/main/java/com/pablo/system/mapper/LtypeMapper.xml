@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.LtypeMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.LtypeVo">
+        <id column="etid" property="etid" jdbcType="INTEGER"/>
+        <result column="etname" property="etname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        etid,etname
+    </sql>
+
+    <select id="queryAll" resultType="com.pablo.system.domain.LtypeVo">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_equipment_ltype
+    </select>
+</mapper>

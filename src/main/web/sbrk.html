@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <title>设备入库</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="vince/css/vince.css">
+    <link rel="stylesheet" href="vince/biao/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="vince/datapick/css/daterangepicker-bs3.css"/>
+    <!--[if lt IE 9]>
+    <script src="dist/js/html5shiv.min.js"></script>
+    <script src="dist/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <a href="#" class="logo">
+      <span class="logo-mini">
+	  <img src="vince/images/v01.png">
+	  </span>
+            <span class="logo-lg"><img src="vince/images/v01.png">项目</span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+            <span class="all_title">华北理工大学能源优化调配及集群负荷控制系统</span>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs" id="right-admin-name">管理员</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <p id="right-second-admin">
+                                    姓名：管理员
+                                    <!--<small>部门：信息部</small>-->
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a href="login.html" class="btn btn-default btn-flat" id="logoutBtn">退出系统</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p id="adminTxt">当前用户：管理员</p>
+                    <p class="menu_time">
+                        时间：<span id="nowTime">2016-9-13 16:12:14</span></p>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="header">菜单 MENU</li>
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home" style="font-size: 22px"></i> <span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ssjc.html">
+                        <i class="fa fa-eye"></i> <span>实时监测</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="yxjc.html">
+                        <i class="fa fa-print"></i> <span>运行监测</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-sliders"></i>
+                        <span>负荷响应</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="xyxgpj.html"><i class="fa fa-bookmark"></i> 响应效果评价</a></li>
+                        <li><a href="fhxyfx.html"><i class="fa fa-bookmark"></i> 负荷响应分析</a></li>
+
+                        <li><a href="xyfagl.html"><i class="fa fa-bookmark"></i> 响应方案管理</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="yjgl.html">
+                        <i class="fa fa-bell"></i> <span>预警管理</span>
+                    </a>
+                </li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-gears"></i>
+                        <span>设备管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="sbrk.html"><i class="fa fa-bookmark"></i> 设备入库</a></li>
+                        <li><a href="sbaz.html"><i class="fa fa-bookmark"></i> 设备安装</a></li>
+                        <li><a href="sbjx.html"><i class="fa fa-bookmark"></i> 设备检修</a></li>
+                        <li><a href="sbbf.html"><i class="fa fa-bookmark"></i> 设备报废</a></li>
+                        <li><a href="sbcx.html"><i class="fa fa-bookmark"></i> 设备查询</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="kzcl.html">
+                        <i class="fa fa-magnet"></i> <span>控制策略</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="xtjc.html">
+                        <i class="fa fa-map"></i> <span>系统集成</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">设备入库</li>
+            </ol>
+        </section>
+        <div class="content qqq">
+            <div class="yjgl">
+                <div class="ssjc_right_up">
+                    <div class="nei">
+                        <div class="ssjc_ru_title">
+          				<span class="left_ten">
+          					设备入库
+          				</span>
+
+
+                            <div class="clear"></div>
+                        </div>
+                        <div class="sbrk_table">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <li>
+                                        <p><span>设备大类：</span>
+                                            <select class="sdrk_select" id="sbdl_select">
+                                                <!--<option value=""></option>-->
+                                                <!--<option value="01">生产</option>-->
+                                                <!--<option value="02" selected="selected">监测</option>-->
+                                            </select></p>
+                                    </li>
+
+
+                                    <li>
+                                        <p><span>生产厂家：</span>
+                                            <select class="sdrk_select" id="sccj_select">
+                                                <!--<option value=""></option>-->
+                                                <!--<option value="1" selected="selected">项目</option>-->
+                                                <!--<option value="2">项目</option>-->
+                                                <!--<option value="3">项目</option>-->
+                                                <!--<option value="4">项目</option>-->
+                                                <!--<option value="5">项目</option>-->
+                                            </select></p>
+                                    </li>
+                                    </p></li>
+                                    <li><p><span>设备厂牌：</span><input type="text" value="" id="sbcp_input"></p></li>
+                                    <li><p><span>设备原值：</span><input type="text" value="" id="sbyz_input"></p></li>
+                                    <li><p><span>采购批次：</span><input type="text" value="" id="cgpc_input"></p></li>
+                                    <li><p><span>设备单价：</span><input type="text" value="" id="sbdj_input"></p></li>
+                                    <li><p><span>设备数量：</span><input type="text" value="" id="sbsl_input"></p></li>
+                                </div>
+                                <div class="col-md-4">
+                                    <li>
+                                        <p><span>设备子类：</span>
+                                            <select class="sdrk_select" id="sbzl_select">
+                                                <!--<option value=""></option>-->
+                                                <!--<option value="1" selected="selected">电表</option>-->
+                                                <!--<option value="5">集中器</option>-->
+                                                <!--<option value="2">采集器</option>-->
+                                                <!--<option value="4">终端</option>-->
+                                                <!--<option value="3">sim卡</option>-->
+                                            </select></p>
+                                    </li>
+                                    <li><p><span>设备型号：</span><input type="text" value="" id="sbxh_input"></p></li>
+                                    <li><p><span>设备规格：</span><input type="text" value="" id="sbgg_input"></p></li>
+                                    <li><p><span>出厂日期：</span><input type="text" readonly class="shixuan_input"
+                                                                    id="ccrq"
+                                                                    value="2014-01-01"/></p><i
+                                            class="shixuan glyphicon glyphicon-calendar fa fa-calendar"></i></li>
+                                    <li><p><span>采购人：</span><input type="text" value="" id="cgr_input"></p></li>
+                                    <li><p><span>设备用途：</span><input type="text" value="" id="sbyt_input"></p></li>
+                                    <li><p><span>设备编号：</span>
+                                        <span class="sbbh_radio">
+                             
+                              <input type="radio" name="sbbh" id="xtsc" checked="checked" class="sbbh_radioBtn"
+                                     value="系统生成"/>
+                               <label for="xtsc">系统生成</label>  </span>
+                                        <span class="sbbh_radio">
+                               <input type="radio" name="sbbh" id="rgsz" class="sbbh_radioBtn" value="人工设置"/>
+                               <label for="rgsz">人工设置</label></span>
+                                        </span>
+
+                                    </p></li>
+                                </div>
+                                <div class="col-md-4">
+                                    <li>
+                                        <p><span>能源类型：</span>
+                                            <select class="sdrk_select" id="nnlx_select">
+                                                <!--<option value=""></option>-->
+                                                <!--<option value="01" selected="selected">电</option>-->
+                                                <!--<option value="02">水</option>-->
+                                                <!--<option value="03">气</option>-->
+                                                <!--<option value="04">热</option>-->
+                                            </select></p>
+                                    </li>
+                                    <li><p><span>隶属单位：</span><input type="text" value="" id="lsdw_input"></p></li>
+                                    <li><p><span>设备功率：</span><input type="text" value="" id="sbgl_input"></p></li>
+                                    <li><p><span>采购日期：</span><input type="text" readonly class="shixuan_input"
+                                                                    id="cgrq"
+                                                                    value="2020-03-26"/></p><i
+                                            class="shixuan glyphicon glyphicon-calendar fa fa-calendar"></i></li>
+
+                                    <li><p><input type="file" value="生成批量信息" class="in_sub"
+                                                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                                  id="xml_file">
+                                        <input type="button" id="upload_btn" class="in_sub" value="上传">
+                                        <input type="button" value="重置" class="in_sub" id="resetBtn">
+                                        <input type="button" value="设备入库" class="in_sub" id="sbrk_btn">
+
+
+                                    </p></li>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="ssjc_right_bottom">
+                        <div class="nei">
+                            <p>数据列表</p>
+                            <div class="ssjc_rub_table">
+                                <table class="tj_table" border="0">
+                                    <thead>
+                                    <tr>
+                                        <td>设备编号</td>
+                                        <td>设备大类</td>
+                                        <td>设备子类</td>
+                                        <td>能源类型</td>
+                                        <td>生产厂家</td>
+                                        <td>设备型号</td>
+                                        <td>隶属单位</td>
+                                        <td>设备厂牌</td>
+                                        <td>设备规格</td>
+                                        <td>设备功率</td>
+                                        <td>设备原值</td>
+                                        <td>出厂日期</td>
+                                        <td>采购批次</td>
+                                        <td>采购人</td>
+                                        <td>采购日期</td>
+                                        <td>设备单价</td>
+                                        <td>设备用途</td>
+                                        <td>安装</td>
+                                        <td>检修</td>
+                                    </tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="data_container">
+
+
+                                    </tbody>
+
+                                </table>
+                                <div class="t_fanye">
+                                    <span class="upten" id="start_page_btn"></span>
+                                    <span class="up" id="prev_btn"></span>
+                                    <span class="split"></span>
+                                    <span class="page_info_one" id="current_page">第 1 / 1 页</span>
+                                    <span class="split"></span>
+                                    <span class="dowm" id="next_btn"></span>
+                                    <span class="downten" id="last_page_btn"></span>
+                                    <span class="page_info_two" id="total_page">共 1 页</span>
+                                    <span class="page_info_three" id="single_page_count">共 0 条记录</span>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="cheng_ershi"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b></b>
+        </div>
+        <strong>Copyright &copy; 2014-2016</strong>
+    </footer>
+    <div class="control-sidebar-bg"></div>
+</div>
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="dist/js/app.min.js"></script>
+<!--<script src="dist/js/demo.js"></script>-->
+<script src="vince/js/nicescroll.js"></script>
+<script src="vince/js/demo.js"></script>
+
+
+<script src="vince/datapick/js/moment.js"></script>
+<script src="vince/datapick/js/daterangepicker.js"></script>
+<script type="text/javascript" src="vince/js/globalInfo.js"></script>
+<script type="text/javascript" src="plugins/layer-v3.1.1/layer/layer.js"></script>
+<script type="text/javascript">
+    var currPage = 1;
+    var lastPage = 1;
+    var install;
+    var overhaul;
+    $(document).ready(function () {
+        $('#ccrq').daterangepicker({singleDatePicker: true}, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#cgrq').daterangepicker({singleDatePicker: true}, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+
+
+        $('#xuanshi1').daterangepicker({singleDatePicker: true}, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+        $('#xuanshi2').daterangepicker({singleDatePicker: true}, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+
+        getEquipData();
+
+
+        var sbdl_select = $('#sbdl_select');
+        var sccj_select = $('#sccj_select');
+        var sbzl_select = $('#sbzl_select');
+        var nnlx_select = $('#nnlx_select');
+
+        var sbcp_input = $('#sbcp_input');
+        var sbyz_input = $('#sbyz_input');
+        var cgpc_input = $('#cgpc_input');
+        var sbdj_input = $('#sbdj_input');
+        var sbsl_input = $('#sbsl_input');
+        var sbxh_input = $('#sbxh_input');
+        var sbgg_input = $('#sbgg_input');
+        var ccrq_input = $('#ccrq');
+        var cgr_input = $('#cgr_input');
+        var sbyt_input = $('#sbyt_input');
+        var lsdw_input = $('#lsdw_input');
+        var sbgl_input = $('#sbgl_input');
+        var cgrq_input = $('#cgrq');
+        var sbbh_radio = $('.sbbh_radioBtn');
+
+        var resetBtn = $('#resetBtn');
+        var sbrk_btn = $('#sbrk_btn');
+
+
+        var start_page_btn = $('#start_page_btn');
+        var prev_btn = $('#prev_btn');
+        var next_btn = $('#next_btn');
+        var last_page_btn = $('#last_page_btn');
+
+        var upload_btn = $('#upload_btn');
+        var xml_file = $('#xml_file');
+
+        $.ajax({});
+
+        next_btn.click(function () {
+            currPage = currPage + 1;
+            if (currPage > lastPage)
+                currPage = lastPage;
+
+            getEquipData()
+        });
+
+        prev_btn.click(function () {
+            currPage = currPage - 1;
+            if (currPage < 1)
+                currPage = 1;
+            getEquipData()
+        });
+
+        last_page_btn.click(function () {
+            currPage = lastPage;
+            getEquipData()
+        });
+
+        start_page_btn.click(function () {
+            currPage = 1;
+            getEquipData()
+        });
+
+        $.getJSON(
+            'ajax_get_all_ltype',
+            function (data) {
+                if (data.code == 11) {
+                    $.each(data.ltype, function (i, v) {
+                        var option = $('<option></option>');
+                        option.val(v.etid);
+                        option.text(v.etname);
+                        sbdl_select.append(option);
+                    })
+                }
+            }
+        );
+
+        $.getJSON(
+            'ajax_get_all_factory',
+            function (data) {
+                if (data.code == 11) {
+                    $.each(data.factory, function (i, v) {
+                        var option = $('<option></option>');
+                        option.val(v.fid);
+                        option.text(v.factoryname);
+                        sccj_select.append(option);
+                    })
+                }
+            }
+        );
+
+        $.getJSON(
+            'ajax_get_all_ctype',
+            function (data) {
+                if (data.code == 11) {
+                    $.each(data.ctype, function (i, v) {
+                        var option = $('<option></option>');
+                        option.val(v.ctid);
+                        option.text(v.ctname);
+                        sbzl_select.append(option);
+                    })
+                }
+            }
+        );
+
+        $.getJSON(
+            'ajax_get_all_etype',
+            function (data) {
+                if (data.code == 11) {
+                    $.each(data.etype, function (i, v) {
+                        var option = $('<option></option>');
+                        option.val(v.eeid);
+                        option.text(v.eetname);
+                        nnlx_select.append(option);
+                    })
+                }
+            }
+        );
+
+        resetBtn.click(function () {
+            sbcp_input.val('');
+            sbyz_input.val('');
+            cgpc_input.val('');
+            sbdj_input.val('');
+            sbsl_input.val('');
+            sbxh_input.val('');
+            sbgg_input.val('');
+            ccrq_input.val('2014-01-01');
+            cgr_input.val('');
+            sbyt_input.val('');
+            sbbh_radio.val('');
+            lsdw_input.val('');
+            sbgl_input.val('');
+            cgrq_input.val('2020-03-26');
+        });
+
+
+        sbrk_btn.click(function () {
+            $.get(
+                'ajax_add_equipment',
+                {
+                    etid: sbdl_select[0].selectedIndex + 1,
+                    fid: sccj_select[0].selectedIndex + 1,
+                    factory: sbcp_input.val(),
+                    original_value: sbyz_input.val(),
+                    procurement_batches: cgpc_input.val(),
+                    single_price: sbdj_input.val(),
+                    count_num: sbsl_input.val(),
+                    ctid: sbzl_select[0].selectedIndex + 1,
+                    version_str: sbxh_input.val(),
+                    spec: sbgg_input.val(),
+                    out_date: ccrq_input.val(),
+                    purchaser: cgr_input.val(),
+                    useto: sbyt_input.val(),
+                    enumber: sbbh_radio.val(),
+                    eeid: nnlx_select[0].selectedIndex + 1,
+                    units: lsdw_input.val(),
+                    epower: sbgl_input.val(),
+                    total_power: Number(sbgl_input.val()) * Number(sbsl_input.val()),
+                    purchase_date: cgrq_input.val()
+                },
+
+                function (data) {
+                    if (data.code == 1) {
+                        layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                            getEquipData();
+                        })
+                    } else {
+                        layer.msg(data.msg, {icon: 5, time: 1000});
+                    }
+                }
+                , 'json'
+            )
+        });
+    });
+
+    function getEquipData() {
+        var data_container = $('#data_container');
+        data_container.empty();
+        $.get(
+            'ajax_get_all_equipment',
+            {
+                current_page: currPage
+            },
+            function (data) {
+                if (data.code == 11) {
+                    $('#current_page').text('第 ' + data.page.current_page + '/' + data.page.page_count + ' 页');
+                    $('#total_page').text('共 ' + data.page.page_count + ' 页');
+                    $('#single_page_count').text('共 ' + data.page.record_count + ' 条记录');
+                    lastPage = data.page.page_count;
+
+                    $.each(data.equipment, function (i, v) {
+                        var tr = $('<tr></tr>');
+                        var td1 = $('<td></td>').text(v.eid);
+                        var td2 = $('<td></td>').text(v.etname);
+                        var td3 = $('<td></td>').text(v.ctname);
+                        var td4 = $('<td></td>').text(v.eetname);
+                        var td5 = $('<td></td>').text(v.factoryname);
+                        var td6 = $('<td></td>').text(v.version_str);
+                        var td7 = $('<td></td>').text(v.units);
+                        var td8 = $('<td></td>').text(v.factory);
+                        var td9 = $('<td></td>').text(v.spec);
+                        var td10 = $('<td></td>').text(v.epower + 'W');
+                        var td11 = $('<td></td>').text(v.original_value);
+                        var td12 = $('<td></td>').text(v.out_date);
+                        var td13 = $('<td></td>').text(v.procurement_batches);
+                        var td14 = $('<td></td>').text(v.purchaser);
+                        var td15 = $('<td></td>').text(v.purchase_date);
+                        var td16 = $('<td></td>').text(v.single_price);
+                        var td17 = $('<td></td>').text(v.useto);
+                        var td18 = $('<td></td>');
+                        var td19 = $('<td></td>');
+
+
+                        if (v.overhaul == 0) {
+                            overhaul = $('<a onclick="gotoOverhauling(' + v.eid + ')" style="color: red;cursor:pointer"></a>').html('未送检')
+                            if (v.installed == 0)
+                                install = $('<a onclick="installedEquipment(' + v.eid + ')" style="color: red;cursor:pointer"></a>').html("未安装");
+                            else
+                                install = $('<a style="color: lawngreen"></a>').html("已安装");
+                        } else {
+                            overhaul = $('<a style="color: orange"></a>').html('已送检')
+                            install = $('<a style="color: grey"></a>').html("禁止安装");
+                        }
+
+
+                        td18.append(install);
+                        td19.append(overhaul);
+                        tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8).append(td9).append(td10).append(td11).append(td12).append(td13).append(td14).append(td15).append(td16).append(td17).append(td18).append(td19);
+                        data_container.append(tr);
+                    });
+                }
+            }
+        );
+    }
+
+    function installedEquipment(eid) {
+        layer.confirm('需要安装此设备吗？', {
+            btn: ['安装', '不安装'] //按钮
+        }, function () {
+            $.get(
+                'ajax_install_equipment',
+                {
+                    eid: eid
+                },
+                function (data) {
+                    if (data.code == 201) {
+                        layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                            getEquipData();
+                        })
+                    } else {
+                        layer.msg(data.msg, {icon: 5, time: 1000});
+                    }
+                }, 'json'
+            )
+        });
+    }
+
+    function gotoOverhauling(eid) {
+        layer.confirm('需要送检此设备吗？', {
+            btn: ['送检', '暂不'] //按钮
+        }, function () {
+            layer.prompt({title: '输入设备问题', formType: 2}, function (pass, index) {
+                layer.close(index);
+                $.get(
+                    'ajax_overhaul_equipment',
+                    {
+                        eid: eid,
+                        overhaul_handle: pass
+                    },
+                    function (data) {
+                        if (data.code == 301) {
+                            layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                                getEquipData();
+                            })
+                        } else {
+                            layer.msg(data.msg, {icon: 5, time: 1000});
+                        }
+                    }, 'json'
+                )
+            });
+        });
+    }
+</script>
+<div id="sss" style="display:none;height:200px;width:200px;"></div>
+<!--<script src="vince/js/echarts.min.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--var myChart1 = echarts.init(document.getElementById('sss'));-->
+<!--option1 = {-->
+<!--series: [{data: [247, 179]}]};-->
+<!--myChart1.setOption(option1);-->
+<!--</script>-->
+</body>
+</html>

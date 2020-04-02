@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.OverhaulMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.OverhaulVo">
+        <id column="eoid" property="eoid" jdbcType="INTEGER"/>
+        <result column="eid" property="eid" jdbcType="INTEGER"/>
+        <result column="overhaul_handle" property="overhaul_handle" jdbcType="VARCHAR"/>
+        <result column="overhaul_time" property="overhaul_handle" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="is_take_back" property="is_take_back" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        eoid,eid,overhaul_handle,overhaul_time,status,is_take_back
+    </sql>
+
+    <insert id="goToOverhauling" parameterType="com.pablo.system.domain.OverhaulVo">
+        insert into tb_equipment_overhaul(eid,overhaul_handle,overhaul_time) values (#{eid},#{overhaul_handle},#{overhaul_time})
+    </insert>
+
+    <select id="showAllOverhaulRecord" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT eo.eoid,eo.overhaul_time,eo.overhaul_handle,eo.status,eo.is_take_back,ee.eetname,ec.ctname,el.etname,e.* FROM
+        tb_equipment_overhaul
+        eo JOIN tb_equipment e ON e.eid=eo.eid JOIN tb_equipment_etype ee ON ee.eeid=e.eeid JOIN tb_equipment_ctype ec
+        ON ec.ctid=e.ctid JOIN tb_equipment_ltype el ON el.etid=e.etid
+        <where>
+            <if test="etname != null and etname != ''">
+                and el.etname=#{etname}
+            </if>
+            <if test="ctname != null and ctname != ''">
+                and ec.ctname=#{ctname}
+            </if>
+            <if test="eetname != null and eetname != ''">
+                and ee.eetname=#{eetname}
+            </if>
+            <if test="eid != null and eid != ''">
+                and e.eid=#{eid}
+            </if>
+        </where>
+        ORDER BY e.eid LIMIT #{start_num},#{single_page_count}
+    </select>
+
+    <select id="getRecordCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_equipment_overhaul
+    </select>
+
+    <update id="updateStatus" parameterType="java.lang.Integer">
+        update tb_equipment_overhaul
+        <set>
+            <if test="is_take_back != null and is_take_back != ''">
+                is_take_back=#{is_take_back}
+            </if>
+        </set>
+        <where>
+            eoid=#{eoid}
+        </where>
+    </update>
+</mapper>

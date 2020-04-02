@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.ResponseSchemeMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.ResponseSchemeVo">
+        <id column="rsid" property="rsid" jdbcType="INTEGER"/>
+        <result column="scheme_name" property="scheme_name" jdbcType="VARCHAR"/>
+        <result column="adjust_target" property="adjust_target" jdbcType="DOUBLE"/>
+        <result column="start_time" property="start_time" jdbcType="VARCHAR"/>
+        <result column="end_time" property="end_time" jdbcType="VARCHAR"/>
+        <result column="bonus" property="end_time" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        rsid,scheme_name,adjust_target,start_time,end_time,bonus
+    </sql>
+
+    <insert id="addResponseScheme" parameterType="com.pablo.system.domain.ResponseSchemeVo">
+        insert into tb_response_scheme(scheme_name,adjust_target,start_time,end_time,bonus) values (#{scheme_name},#{adjust_target},#{start_time},#{end_time},#{bonus})
+    </insert>
+
+    <select id="getRecordCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_response_scheme
+    </select>
+
+    <select id="showAllResponseScheme" parameterType="java.util.Map" resultType="java.util.Map">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_response_scheme
+        <where>
+            <if test="scheme_name != null and scheme_name != ''">
+                and scheme_name like concat('%',#{scheme_name},'%')
+            </if>
+            <if test="start_time != null and start_time != ''">
+                and start_time=#{start_time}
+            </if>
+        </where>
+
+        <if test="current_page != 0">
+            LIMIT #{start_num},#{single_page_count}
+        </if>
+    </select>
+
+    <delete id="deleteResponseSchemeItem" parameterType="java.lang.Integer">
+        delete from tb_response_scheme where rsid=#{rsid}
+    </delete>
+
+    <insert id="addControlStrategyIntoResponseScheme" parameterType="java.lang.Integer">
+        insert into tb_re_sch_and_ctrl_stgy(rsid,csid) values(#{rsid},#{csid})
+    </insert>
+
+    <select id="getAddedSchemeByRsid" parameterType="java.lang.Integer" resultType="java.util.Map">
+        select rscs.rscsid,rscs.rsid,cs.* from tb_re_sch_and_ctrl_stgy rscs join tb_control_strategy cs on rscs.csid = cs.csid where rsid=#{rsid}
+    </select>
+</mapper>

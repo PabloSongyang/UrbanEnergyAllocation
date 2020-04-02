@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.OperationMonitoringMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.OperationMonitoringVo">
+        <id column="eomid" property="eomid" jdbcType="INTEGER"/>
+        <result column="eid" property="eid" jdbcType="INTEGER"/>
+        <result column="operate_date" property="operate_date" jdbcType="VARCHAR"/>
+        <result column="zero_hour" property="zero_hour" jdbcType="DOUBLE"/>
+        <result column="one_hour" property="one_hour" jdbcType="DOUBLE"/>
+        <result column="two_hour" property="two_hour" jdbcType="DOUBLE"/>
+        <result column="three_hour" property="three_hour" jdbcType="DOUBLE"/>
+        <result column="four_hour" property="four_hour" jdbcType="DOUBLE"/>
+        <result column="five_hour" property="five_hour" jdbcType="DOUBLE"/>
+        <result column="six_hour" property="six_hour" jdbcType="DOUBLE"/>
+        <result column="seven_hour" property="seven_hour" jdbcType="DOUBLE"/>
+        <result column="eight_hour" property="eight_hour" jdbcType="DOUBLE"/>
+        <result column="nine_hour" property="nine_hour" jdbcType="DOUBLE"/>
+        <result column="ten_hour" property="ten_hour" jdbcType="DOUBLE"/>
+        <result column="eleven_hour" property="eleven_hour" jdbcType="DOUBLE"/>
+        <result column="twelve_hour" property="twelve_hour" jdbcType="DOUBLE"/>
+        <result column="thirteen_hour" property="thirteen_hour" jdbcType="DOUBLE"/>
+        <result column="fourteen_hour" property="fourteen_hour" jdbcType="DOUBLE"/>
+        <result column="fifteen_hour" property="fifteen_hour" jdbcType="DOUBLE"/>
+        <result column="sixteen_hour" property="sixteen_hour" jdbcType="DOUBLE"/>
+        <result column="seventeen_hour" property="seventeen_hour" jdbcType="DOUBLE"/>
+        <result column="eighteen_hour" property="eighteen_hour" jdbcType="DOUBLE"/>
+        <result column="nineteen_hour" property="nineteen_hour" jdbcType="DOUBLE"/>
+        <result column="twenty_hour" property="twenty_hour" jdbcType="DOUBLE"/>
+        <result column="twentyone_hour" property="twentyone_hour" jdbcType="DOUBLE"/>
+        <result column="twentytwo_hour" property="twentytwo_hour" jdbcType="DOUBLE"/>
+        <result column="twentythree_hour" property="twentythree_hour" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        eomid,eid,operate_date,zero_hour,one_hour,two_hour,three_hour,four_hour,five_hour,six_hour,seven_hour,
+        eight_hour,nine_hour,ten_hour,eleven_hour,twelve_hour,thirteen_hour,fourteen_hour,fifteen_hour,sixteen_hour,
+        seventeen_hour,eighteen_hour,nineteen_hour,twenty_hour,twentyone_hour,twentytwo_hour,twentythree_hour
+    </sql>
+
+    <insert id="addOperationMonitor" parameterType="com.pablo.system.domain.OperationMonitoringVo">
+        insert into tb_equipment_operation_monitoring
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="eid != null">
+                eid,
+            </if>
+            <if test="operate_date != null">
+                operate_date,
+            </if>
+            <if test="zero_hour != null">
+                zero_hour,
+            </if>
+            <if test="one_hour != null">
+                one_hour,
+            </if>
+            <if test="two_hour != null">
+                two_hour,
+            </if>
+            <if test="three_hour != null">
+                three_hour,
+            </if>
+            <if test="four_hour != null">
+                four_hour,
+            </if>
+            <if test="five_hour != null">
+                five_hour,
+            </if>
+            <if test="six_hour != null">
+                six_hour,
+            </if>
+            <if test="seven_hour != null">
+                seven_hour,
+            </if>
+            <if test="eight_hour != null">
+                eight_hour,
+            </if>
+            <if test="nine_hour != null">
+                nine_hour,
+            </if>
+            <if test="ten_hour != null">
+                ten_hour,
+            </if>
+            <if test="eleven_hour != null">
+                eleven_hour,
+            </if>
+            <if test="twelve_hour != null">
+                twelve_hour,
+            </if>
+            <if test="thirteen_hour != null">
+                thirteen_hour,
+            </if>
+            <if test="fourteen_hour != null">
+                fourteen_hour,
+            </if>
+            <if test="fifteen_hour != null">
+                fifteen_hour,
+            </if>
+            <if test="sixteen_hour != null">
+                sixteen_hour,
+            </if>
+            <if test="seventeen_hour != null">
+                seventeen_hour,
+            </if>
+            <if test="eighteen_hour != null">
+                eighteen_hour,
+            </if>
+            <if test="nineteen_hour != null">
+                nineteen_hour,
+            </if>
+            <if test="twenty_hour != null">
+                twenty_hour,
+            </if>
+            <if test="twentyone_hour != null">
+                twentyone_hour,
+            </if>
+            <if test="twentytwo_hour != null">
+                twentytwo_hour,
+            </if>
+            <if test="twentythree_hour != null">
+                twentythree_hour,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="eid != null">
+                #{eid,jdbcType=INTEGER},
+            </if>
+            <if test="operate_date != null">
+                #{operate_date,jdbcType=VARCHAR},
+            </if>
+            <if test="zero_hour != null">
+                #{zero_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="one_hour != null">
+                #{one_hour,jdbcType=DOUBLE}r,
+            </if>
+            <if test="two_hour != null">
+                #{two_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="three_hour != null">
+                #{three_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="four_hour != null">
+                #{four_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="five_hour != null">
+                #{five_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="six_hour != null">
+                #{six_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="seven_hour != null">
+                #{seven_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="eight_hour != null">
+                #{eight_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="nine_hour != null">
+                #{nine_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="ten_hour != null">
+                #{ten_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="eleven_hour != null">
+                #{eleven_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twelve_hour != null">
+                #{twelve_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="thirteen_hour != null">
+                #{thirteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="fourteen_hour != null">
+                #{fourteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="fifteen_hour != null">
+                #{fifteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="sixteen_hour != null">
+                #{sixteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="seventeen_hour != null">
+                #{seventeen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="eighteen_hour != null">
+                #{eighteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="nineteen_hour != null">
+                #{nineteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twenty_hour != null">
+                #{twenty_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twentyone_hour != null">
+                #{twentyone_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twentytwo_hour != null">
+                #{twentytwo_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twentythree_hour != null">
+                #{twentythree_hour,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="queryEquipmentExisted" parameterType="java.util.Map"
+            resultType="com.pablo.system.domain.OperationMonitoringVo">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_equipment_operation_monitoring where eid=#{eid}
+        <if test="operate_date != null and operate_date != ''">
+            and operate_date=#{operate_date}
+        </if>
+    </select>
+    
+    <update id="updateOperationMonitor" parameterType="com.pablo.system.domain.OperationMonitoringVo">
+        update tb_equipment_operation_monitoring
+        <set>
+            <if test="zero_hour != null">
+                zero_hour=#{zero_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="one_hour != null">
+                one_hour=#{one_hour,jdbcType=DOUBLE}r,
+            </if>
+            <if test="two_hour != null">
+                two_hour=#{two_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="three_hour != null">
+                three_hour=#{three_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="four_hour != null">
+                four_hour=#{four_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="five_hour != null">
+                five_hour=#{five_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="six_hour != null">
+                six_hour=#{six_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="seven_hour != null">
+                seven_hour=#{seven_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="eight_hour != null">
+                eight_hour=#{eight_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="nine_hour != null">
+                nine_hour=#{nine_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="ten_hour != null">
+                ten_hour=#{ten_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="eleven_hour != null">
+                eleven_hour=#{eleven_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twelve_hour != null">
+                twelve_hour=#{twelve_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="thirteen_hour != null">
+                thirteen_hour=#{thirteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="fourteen_hour != null">
+                fourteen_hour=#{fourteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="fifteen_hour != null">
+                fifteen_hour=#{fifteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="sixteen_hour != null">
+                sixteen_hour=#{sixteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="seventeen_hour != null">
+                seventeen_hour=#{seventeen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="eighteen_hour != null">
+                eighteen_hour=#{eighteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="nineteen_hour != null">
+                nineteen_hour=#{nineteen_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twenty_hour != null">
+                twenty_hour=#{twenty_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twentyone_hour != null">
+                twentyone_hour=#{twentyone_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twentytwo_hour != null">
+                twentytwo_hour=#{twentytwo_hour,jdbcType=DOUBLE},
+            </if>
+            <if test="twentythree_hour != null">
+                twentythree_hour=#{twentythree_hour,jdbcType=DOUBLE},
+            </if>
+        </set>
+    </update>
+</mapper>

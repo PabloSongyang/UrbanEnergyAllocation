@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.FactoryMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.FactoryVo">
+        <id column="fid" property="fid" jdbcType="INTEGER"/>
+        <result column="factoryname" property="factoryname" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        fid,factoryname
+    </sql>
+
+    <select id="queryAll" resultType="com.pablo.system.domain.FactoryVo">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_equipment_factory
+    </select>
+</mapper>

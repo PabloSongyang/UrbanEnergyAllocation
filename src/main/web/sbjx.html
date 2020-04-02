@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10">
+    <title>设备检修</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="dist/css/ionicons.min.css">
+    <link rel="stylesheet" href="dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="dist/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="vince/css/vince.css">
+    <link rel="stylesheet" href="vince/biao/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+    <script src="dist/js/html5shiv.min.js"></script>
+    <script src="dist/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <header class="main-header">
+        <a href="#" class="logo">
+      <span class="logo-mini">
+	  <img src="vince/images/v01.png">
+	  </span>
+            <span class="logo-lg"><img src="vince/images/v01.png">项目</span>
+        </a>
+        <nav class="navbar navbar-static-top">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+            <span class="all_title">华北理工大学能源优化调配及集群负荷控制系统</span>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs" id="right-admin-name">管理员</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="user-header">
+                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <p id="right-second-admin">
+                                    姓名：管理员
+                                    <!--<small>部门：信息部</small>-->
+                                </p>
+                            </li>
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a href="login.html" class="btn btn-default btn-flat" id="logoutBtn">退出系统</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p id="adminTxt">当前用户：管理员</p>
+                    <p class="menu_time">
+                        时间：<span id="nowTime">2016-9-13 16:12:14</span></p>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li class="header">菜单 MENU</li>
+                <li>
+                    <a href="index.html">
+                        <i class="fa fa-home" style="font-size: 22px"></i> <span>首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ssjc.html">
+                        <i class="fa fa-eye"></i> <span>实时监测</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="yxjc.html">
+                        <i class="fa fa-print"></i> <span>运行监测</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-sliders"></i>
+                        <span>负荷响应</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="xyxgpj.html"><i class="fa fa-bookmark"></i> 响应效果评价</a></li>
+                        <li><a href="fhxyfx.html"><i class="fa fa-bookmark"></i> 负荷响应分析</a></li>
+
+                        <li><a href="xyfagl.html"><i class="fa fa-bookmark"></i> 响应方案管理</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="yjgl.html">
+                        <i class="fa fa-bell"></i> <span>预警管理</span>
+                    </a>
+                </li>
+                <li class="treeview active">
+                    <a href="#">
+                        <i class="fa fa-gears"></i>
+                        <span>设备管理</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="sbrk.html"><i class="fa fa-bookmark"></i> 设备入库</a></li>
+                        <li><a href="sbaz.html"><i class="fa fa-bookmark"></i> 设备安装</a></li>
+                        <li class="active"><a href="sbjx.html"><i class="fa fa-bookmark"></i> 设备检修</a></li>
+                        <li><a href="sbbf.html"><i class="fa fa-bookmark"></i> 设备报废</a></li>
+                        <li><a href="sbcx.html"><i class="fa fa-bookmark"></i> 设备查询</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="kzcl.html">
+                        <i class="fa fa-magnet"></i> <span>控制策略</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="xtjc.html">
+                        <i class="fa fa-map"></i> <span>系统集成</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    <div class="content-wrapper">
+        <section class="content-header">
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">设备检修</li>
+            </ol>
+        </section>
+        <div class="content qqq">
+            <div class="yjgl">
+                <div class="ssjc_right_up">
+                    <div class="nei">
+                        <div class="ssjc_ru_title">
+                  <span class="left_ten">
+                    查询条件
+                  </span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="sbaz_table">
+                            <p><span>大类：<input type="text" id="large-type"></span>
+                                <span>小类：<input type="text" id="small-type"></span>
+                                <span>能源类型：<input type="text" id="energy-type"></span>
+                                <span>设备编号：<input type="text" id="equipment-number"></span>
+                                <input type="button" value="重置" class="in_sub" id="reset_btn">
+                                <input type="button" value="查询" class="in_sub" id="query_btn">
+                                <!--<input type="submit" value="设备安装" class="in_sub">-->
+                                <!--<input type="submit" value="检索设备安装" class="in_sub">-->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ssjc_right_bottom">
+                        <div class="nei">
+                            <p>数据列表</p>
+                            <div class="ssjc_rub_table">
+                                <table class="tj_table" border="0">
+                                    <thead>
+                                    <tr>
+                                        <td>设备编号</td>
+                                        <td>设备大类</td>
+                                        <td>设备小类</td>
+                                        <td>能源类型</td>
+                                        <td>检修状态</td>
+                                        <td>使用单位</td>
+                                        <td>安装地址</td>
+                                        <td>送检时间</td>
+                                        <td>检修问题</td>
+                                        <td>收回操作</td>
+                                    </tr>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="checkable" id="overhaul-container">
+
+
+                                    </tbody>
+
+                                </table>
+                                <div class="t_fanye">
+                                    <span class="upten" id="start_page_btn"></span>
+                                    <span class="up" id="prev_btn"></span>
+                                    <span class="split"></span>
+                                    <span class="page_info_one" id="current_page">第 1 / 1 页</span>
+                                    <span class="split"></span>
+                                    <span class="dowm" id="next_btn"></span>
+                                    <span class="downten" id="last_page_btn"></span>
+                                    <span class="page_info_two" id="total_page">共 1 页<span
+                                            class="gongji">15</span></span>
+                                    <span class="page_info_three" id="single_page_count">共 0 条记录</span>
+                                    <div class="clear"></div>
+                                </div>
+
+                            </div>
+                            <div class="cheng_ershi"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b></b>
+        </div>
+        <strong>Copyright &copy; 2014-2016</strong>
+    </footer>
+    <div class="control-sidebar-bg"></div>
+</div>
+<script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="dist/js/app.min.js"></script>
+<!--<script src="dist/js/demo.js"></script>-->
+<script src="vince/js/nicescroll.js"></script>
+<script src="vince/js/demo.js"></script>
+<div id="sss" style="display:none;height:200px;width:200px;"></div>
+<script src="vince/js/echarts.min.js"></script>
+<script type="text/javascript" src="vince/js/globalInfo.js"></script>
+<script type="text/javascript" src="plugins/layer-v3.1.1/layer/layer.js"></script>
+<script type="text/javascript">
+    // var myChart1 = echarts.init(document.getElementById('sss'));
+    // option1 = {
+    //     series: [{data: [247, 179]}]
+    // };
+    // myChart1.setOption(option1);
+
+    var overhaul_container = $('#overhaul-container');
+    var start_page_btn = $('#start_page_btn');
+    var prev_btn = $('#prev_btn');
+    var next_btn = $('#next_btn');
+    var last_page_btn = $('#last_page_btn');
+
+    var currPage = 1;
+    var lastPage = 1;
+
+    var large_type = $('#large-type');
+    var small_type = $('#small-type');
+    var energy_type = $('#energy-type');
+    var equipment_number = $('#equipment-number');
+
+    var reset_btn = $('#reset_btn');
+    var query_btn = $('#query_btn');
+
+    var take_back;
+
+    $(function () {
+        showOverhaulList();
+
+        next_btn.click(function () {
+            currPage = currPage + 1;
+            if (currPage > lastPage)
+                currPage = lastPage;
+
+            showOverhaulList();
+        });
+
+        prev_btn.click(function () {
+            currPage = currPage - 1;
+            if (currPage < 1)
+                currPage = 1;
+            showOverhaulList();
+        });
+
+        last_page_btn.click(function () {
+            currPage = lastPage;
+            showOverhaulList();
+        });
+
+        start_page_btn.click(function () {
+            currPage = 1;
+            showOverhaulList();
+        });
+
+        query_btn.click(function () {
+            showOverhaulList();
+
+        });
+
+        reset_btn.click(function () {
+            large_type.val('');
+            small_type.val('');
+            energy_type.val('');
+            equipment_number.val('');
+        });
+    });
+
+    function showOverhaulList() {
+        overhaul_container.empty();
+
+        var etname = large_type.val();
+        var ctname = small_type.val();
+        var eetname = energy_type.val();
+        var eid = equipment_number.val();
+
+        $.getJSON(
+            'ajax_overhaul_list',
+            {
+                current_page: currPage,
+                etname: etname,
+                ctname: ctname,
+                eetname: eetname,
+                eid: eid
+            },
+            function (data) {
+                console.log(data)
+                if (data.code == 11) {
+                    $('#current_page').text('第 ' + data.page.current_page + '/' + data.page.page_count + ' 页');
+                    $('#total_page').text('共 ' + data.page.page_count + ' 页');
+                    $('#single_page_count').text('共 ' + data.page.record_count + ' 条记录');
+                    lastPage = data.page.page_count;
+
+                    $.each(data.overhaul_list, function (i, v) {
+                        var tr = $('<tr></tr>');
+                        var td1 = $('<td></td>').text(v.eid);
+                        var td2 = $('<td></td>').text(v.etname);
+                        var td3 = $('<td></td>').text(v.ctname);
+                        var td4 = $('<td></td>').text(v.eetname);
+                        var td5 = $('<td></td>');
+                        switch (v.status) {
+                            case 0:
+                                td5.text('检修完成');
+                                if (v.is_take_back == 0)
+                                    take_back = ('<a style="color: #48b3fe;cursor: pointer" onclick="takeBack(' + v.eoid + ',' + v.eid + ')">可收回</a>')
+                                else
+                                    take_back = ('<a style="color: grey">已收回</a>');
+                                break;
+                            case 1:
+                                td5.text('待检修');
+                                take_back = ('<a style="color: red">检修期间不可收回</a>');
+                                break;
+                            case 2:
+                                td5.text('检修中');
+                                take_back = ('<a style="color: red">检修期间不可收回</a>')
+                                break;
+                        }
+                        var td6 = $('<td></td>').text(v.units);
+                        var td7 = $('<td></td>').text(v.useto);
+                        var td8 = $('<td></td>').text(v.overhaul_time);
+                        var td9 = $('<td></td>').text(v.overhaul_handle);
+                        var td10 = $('<td></td>');
+
+
+                        td10.append(take_back);
+                        tr.append(td1).append(td2).append(td3).append(td4).append(td5).append(td6).append(td7).append(td8).append(td9).append(td10);
+                        overhaul_container.append(tr);
+                    })
+                }
+            }
+        )
+    }
+
+    function takeBack(eoid, eid) {
+        $.getJSON(
+            'ajax_overhaul_take_back',
+            {
+                eoid: eoid,
+                eid: eid
+            },
+            function (data) {
+                if (data.code == 401) {
+                    layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                        showOverhaulList();
+                    })
+                } else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            }
+        )
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.InstallMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.InstallVo">
+        <id column="eiid" property="eiid" jdbcType="INTEGER"/>
+        <result column="eid" property="eid" jdbcType="INTEGER"/>
+        <result column="install_time" property="install_time" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        eiid,eid,install_time
+    </sql>
+
+    <insert id="installEquipment" parameterType="com.pablo.system.domain.InstallVo">
+        insert into tb_equipment_installed(eid,install_time) values (#{eid},#{install_time})
+    </insert>
+
+    <delete id="deleteInstallNoteByEid" parameterType="java.lang.Integer">
+        delete from tb_equipment_installed where eid=#{eid}
+    </delete>
+
+    <select id="showInstalledList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT ei.eiid,ei.install_time,ee.eetname,ec.ctname,el.etname,e.* FROM tb_equipment_installed ei JOIN
+        tb_equipment e ON e.eid=ei.eid JOIN tb_equipment_etype ee ON ee.eeid=e.eeid JOIN tb_equipment_ctype ec ON
+        ec.ctid=e.ctid JOIN tb_equipment_ltype el ON el.etid=e.etid
+        <where>
+            <if test="etname != null and etname != ''">
+                and el.etname=#{etname}
+            </if>
+            <if test="ctname != null and ctname != ''">
+                and ec.ctname=#{ctname}
+            </if>
+            <if test="eetname != null and eetname != ''">
+                and ee.eetname=#{eetname}
+            </if>
+            <if test="eid != null and eid != ''">
+                and e.eid=#{eid}
+            </if>
+        </where>
+        order by e.eid LIMIT #{start_num},#{single_page_count}
+    </select>
+
+    <select id="getRecordCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_equipment_installed
+    </select>
+
+    <select id="queryInstallNoteByEid" parameterType="java.lang.Integer" resultType="com.pablo.system.domain.InstallVo">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_equipment_installed where eid=#{eid}
+    </select>
+
+    <select id="realTimeMonitoring" resultType="java.util.Map">
+        SELECT ei.eiid,ei.install_time,ee.eetname,ec.ctname,el.etname,e.* FROM tb_equipment_installed ei JOIN
+        tb_equipment e ON e.eid=ei.eid JOIN tb_equipment_etype ee ON ee.eeid=e.eeid JOIN tb_equipment_ctype ec ON
+        ec.ctid=e.ctid JOIN tb_equipment_ltype el ON el.etid=e.etid
+    </select>
+</mapper>

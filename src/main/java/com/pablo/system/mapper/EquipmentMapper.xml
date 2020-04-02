@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.EquipmentMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.EquipmentVo">
+        <id column="uid" property="uid" jdbcType="INTEGER"/>
+        <result column="etid" property="etid" jdbcType="INTEGER"/>
+        <result column="fid" property="fid" jdbcType="INTEGER"/>
+        <result column="factory" property="factory" jdbcType="VARCHAR"/>
+        <result column="original_value" property="original_value" jdbcType="DOUBLE"/>
+        <result column="procurement_batches" property="procurement_batches" jdbcType="VARCHAR"/>
+        <result column="single_price" property="single_price" jdbcType="DOUBLE"/>
+        <result column="count_num" property="count_num" jdbcType="INTEGER"/>
+        <result column="ctid" property="ctid" jdbcType="INTEGER"/>
+        <result column="version_str" property="version_str" jdbcType="VARCHAR"/>
+        <result column="spec" property="spec" jdbcType="VARCHAR"/>
+        <result column="out_date" property="out_date" jdbcType="VARCHAR"/>
+        <result column="purchaser" property="purchaser" jdbcType="VARCHAR"/>
+        <result column="useto" property="useto" jdbcType="VARCHAR"/>
+        <result column="enumber" property="enumber" jdbcType="VARCHAR"/>
+        <result column="eeid" property="eeid" jdbcType="INTEGER"/>
+        <result column="units" property="units" jdbcType="VARCHAR"/>
+        <result column="epower" property="epower" jdbcType="DOUBLE"/>
+        <result column="total_power" property="total_power" jdbcType="DOUBLE"/>
+        <result column="purchase_date" property="purchase_date" jdbcType="VARCHAR"/>
+        <result column="installed" property="installed" jdbcType="INTEGER"/>
+        <result column="overhaul" property="overhaul" jdbcType="INTEGER"/>
+        <result column="damage" property="damage" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        eid,etid,fid,factory,original_value,procurement_batches,single_price,count_num,ctid,version_str,spec,out_date,purchaser,useto,enumber,eeid,units,epower,total_power,purchase_date,installed,overhaul,damage
+    </sql>
+
+    <insert id="addEquipment" parameterType="java.util.Map">
+        INSERT INTO tb_equipment(etid,fid,factory,original_value,procurement_batches,single_price,count_num,ctid,version_str,spec,out_date,purchaser,useto,enumber,eeid,units,epower,total_power,purchase_date)
+        VALUES(#{etid},#{fid},#{factory},#{original_value},#{procurement_batches},#{single_price},#{count_num},#{ctid},#{version_str},#{spec},#{out_date},#{purchaser},#{useto},#{enumber},#{eeid},#{units},#{epower},#{total_power},#{purchase_date})
+    </insert>
+
+    <select id="queryAllDataWithType" resultType="java.util.Map" parameterType="com.pablo.system.domain.PagingVo">
+        SELECT e.*,c.ctname,et.eetname,f.factoryname,l.etname FROM tb_equipment e JOIN tb_equipment_ctype c ON c.ctid=e.ctid JOIN tb_equipment_etype et ON et.eeid=e.eeid JOIN tb_equipment_factory f ON f.fid=e.fid JOIN tb_equipment_ltype l ON l.etid=e.etid ORDER BY e.eid LIMIT #{start_num},#{single_page_count}
+    </select>
+
+    <select id="getRecordCount" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tb_equipment
+    </select>
+
+    <update id="updateEquipmentStatus" parameterType="java.util.Map">
+        update tb_equipment
+        <trim prefix="set" suffixOverrides="," suffix=" where eid=#{eid}">
+            <if test="installed != null">
+                installed=#{installed},
+            </if>
+            <if test="overhaul != null">
+                overhaul=#{overhaul},
+            </if>
+            <if test="damage != null">
+                damage=#{damage},
+            </if>
+        </trim>
+    </update>
+</mapper>
