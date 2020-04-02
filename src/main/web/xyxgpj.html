@@ -171,7 +171,7 @@
                                     <div class="xyxgpj_top_nei">
                                         <div class="xyxgpj_baifen" id="scroll-bar"></div>
                                         <div class="xyxypj_left">
-                                            <p id="percent-text">75%</p>
+                                            <p id="percent-text" style="color: #6a7683">75%</p>
                                         </div>
 
                                         <div class="xyxgpj_right">
@@ -237,18 +237,20 @@
                         </div>
 
                         <div class="xyxgpj_rightbottom">
-                            <p class="yxpjxg_one">响应效果评价</p>
-                            <div class="yxpjxg_two">
-                                <p>满足响应目标</p>
-                            </div>
-                            <div class="yxpjxg_three">
-                                <p>不满足响应目标</p>
-                            </div>
+                            <p class="yxpjxg_one"></p>
+                            <!--<div class="yxpjxg_two">-->
+                            <!--<p id="satisfied-btn">满足响应目标</p>-->
+                            <!--</div>-->
+                            <!--<div class="yxpjxg_three">-->
+                            <!--<p id="dissatisfied-btn">不满足响应目标</p>-->
+
+                            <!--</div>-->
+
                             <p class="yxpjxg_four">综合评价</p>
                             <div class="yxpjxg_five">
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <textarea name="" id="overall_merit-textarea" cols="30" rows="10"></textarea>
                             </div>
-                            <p class="baoxun"><input type="submit" value="保存"></p>
+                            <p class="baoxun"><input type="button" value="保存" id="safe-btn"></p>
                         </div>
                     </div>
                 </div>
@@ -290,93 +292,11 @@
 <script type="text/javascript">
     /* 第一个图 */
     var myChart1 = echarts.init(document.getElementById('echarts_xyxgpj_one'));
-    option1 = {
-        title: {
-            text: '负荷完成度',
-            textStyle: {
-                color: '#fff',
-                fontSize: 14,
-                fontWeight: 'normal'
-            },
-            padding: 10
-        },
-        series: [{
-            name: '负荷完成度',
-            type: 'pie',
-            radius: ['35%', '70%'],
-            center: ['50%', '50%'],
-            avoidLabelOverlap: false,
-            label: {
-                normal: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '24',
-                        fontWeight: 'bold',
-                        color: '#fff'
-                    },
-                    position: 'center'
-                },
-                emphasis: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '20',
-                        fontWeight: 'bold',
-                        color: '#fff'
-                    }
-                }
-            },
-            data: [
-                {value: 67, name: '67%'},
-                {value: 33, name: ''},],
-            color: ['#55c45f', '#ff6b6b']
-        }]
-    };
-    myChart1.setOption(option1);
+
 
     /* 第二个图 */
     var myChart2 = echarts.init(document.getElementById('echarts_xyxgpj_two'));
-    option2 = {
-        title: {
-            text: '时间完成度',
-            textStyle: {
-                color: '#fff',
-                fontSize: 14,
-                fontWeight: 'normal'
-            },
-            padding: 10
-        },
-        series: [{
-            name: '时间完成度',
-            type: 'pie',
-            radius: ['35%', '70%'],
-            center: ['50%', '50%'],
-            avoidLabelOverlap: false,
-            label: {
-                normal: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '24',
-                        fontWeight: 'bold',
-                        color: '#fff'
-                    },
-                    position: 'center'
-                },
-                emphasis: {
-                    show: true,
-                    textStyle: {
-                        fontSize: '20',
-                        fontWeight: 'bold',
-                        color: '#fff'
-                    }
-                }
-            },
-            data: [
-                {value: 79, name: '79%'},
-                {value: 21, name: ''},],
-            color: ['#55c45f', '#ff6b6b']
-        }]
-    };
-    myChart2.setOption(option2);
+
 
     /* 第三个图 */
     var myChart3 = echarts.init(document.getElementById('echarts_xyxgpj_three'));
@@ -518,6 +438,9 @@
     var target_detail_txt = $('#target-detail-text');
     var strategy_name_all = '';
 
+    var overall_merit_textarea = $('#overall_merit-textarea');
+    var safe_btn = $('#safe-btn');
+
     $(function () {
         showResponseSchemeList();
 
@@ -538,6 +461,8 @@
         //         layer.msg(data.msg, {icon: 5, time: 1000});
         //     }
         // });
+
+
     });
 
     /**
@@ -579,6 +504,8 @@
      */
     function selectScheme(container, data) {
         var p = container.children('div').children('p');
+        strategy_name_all = '';
+        overall_merit_textarea.val('');
 
         p.eq(0).addClass('xj_left_chioce');
         getAddedSchemeByRsid(data, 0);
@@ -604,9 +531,8 @@
         scheme_name_div.text('方案名称：' + data.response_scheme_list[index].scheme_name);
         adjust_target.text('目标负荷：' + data.response_scheme_list[index].adjust_target + 'W');
         actual_regulation.text('实际调节：' + '0');
-
-
-
+        strategy_name_all = '';
+        overall_merit_textarea.val('');
 
         li_container.empty();
 
@@ -634,12 +560,167 @@
             }
         });
 
+        var complete_percent = (data.response_scheme_list[index].completed / data.response_scheme_list[index].adjust_target * 100).toFixed(1);
 
-
-
+        percent_txt.text(complete_percent + '%');
+        scroll_bar.css('width', complete_percent + '%');
         target_detail_txt.html('当前调节目标：' + data.response_scheme_list[index].adjust_target + 'W' +
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已完成：' + 15200 + 'W' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前负荷：' + 222 + 'W'+
-            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前控制策略：' +strategy_name_all);
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已完成：' + data.response_scheme_list[index].completed + 'W' + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前负荷：' + data.response_scheme_list[index].current_load + 'W' +
+            '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当前控制策略：' + strategy_name_all);
+
+        //负荷完成度饼图显示
+        showLoadComplete(complete_percent, complete_percent + '%');
+
+        //响应开始时间
+        var startTime = data.response_scheme_list[index].start_time.replace(new RegExp("-", "gm"), "/");
+        var startTimeMillis = (new Date(startTime)).getTime(); //得到毫秒数
+
+        //响应结束时间
+        var endTime = data.response_scheme_list[index].end_time.replace(new RegExp("-", "gm"), "/");
+        var endTimeMillis = (new Date(endTime)).getTime(); //得到毫秒数
+
+        var timeCompletePercent = ((getNowTime() - startTimeMillis) / (endTimeMillis - startTimeMillis) * 100).toFixed(1);
+
+        //时间完成度饼图显示
+        showTimeComplete(timeCompletePercent, timeCompletePercent + '%');
+
+        //保存负荷响应评价
+        safe_btn.click(function () {
+            safeLoadResponseNote(
+                data.response_scheme_list[index].rsid,
+                data.response_scheme_list[index].adjust_target,
+                data.response_scheme_list[index].completed,
+                complete_percent,
+                timeCompletePercent,
+                overall_merit_textarea.val()
+            );
+        });
+    }
+
+    /**
+     * 保存负荷响应评价
+     */
+    function safeLoadResponseNote(rsid, regulate_target, actual_regulation, load_complete, time_complete, overall_merit) {
+        $.getJSON(
+            'ajax_add_load_response',
+            {
+                rsid: rsid,
+                regulate_target: regulate_target,
+                actual_regulation: actual_regulation,
+                load_complete: load_complete,
+                time_complete: time_complete,
+                overall_merit: overall_merit
+            },
+            function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1, time: 1000},function () {
+                        overall_merit_textarea.val('');
+                    })
+                } else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            }
+        )
+    }
+
+    /**
+     * 显示负荷完成度饼图
+     * @param val 值
+     * @param name 百分比值字符串
+     */
+    function showLoadComplete(val, name) {
+        option1 = {
+            title: {
+                text: '负荷完成度',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 14,
+                    fontWeight: 'normal'
+                },
+                padding: 10
+            },
+            series: [{
+                name: '负荷完成度',
+                type: 'pie',
+                radius: ['35%', '70%'],
+                center: ['50%', '50%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '24',
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        },
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        }
+                    }
+                },
+                data: [
+                    {value: val, name: name},
+                    {value: 100 - val, name: ''}],
+                color: ['#55c45f', '#ff6b6b']
+            }]
+        };
+        myChart1.setOption(option1);
+    }
+
+    /**
+     * 显示时间完成度饼图
+     * @param val 值
+     * @param name 百分比值字符串
+     */
+    function showTimeComplete(val, name) {
+        option2 = {
+            title: {
+                text: '时间完成度',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 14,
+                    fontWeight: 'normal'
+                },
+                padding: 10
+            },
+            series: [{
+                name: '时间完成度',
+                type: 'pie',
+                radius: ['35%', '70%'],
+                center: ['50%', '50%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '24',
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        },
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'bold',
+                            color: '#fff'
+                        }
+                    }
+                },
+                data: [
+                    {value: val, name: name},
+                    {value: 100 - val, name: ''}],
+                color: ['#55c45f', '#ff6b6b']
+            }]
+        };
+        myChart2.setOption(option2);
     }
 </script>
 </body>

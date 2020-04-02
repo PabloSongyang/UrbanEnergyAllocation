@@ -1,3 +1,11 @@
+/**
+ * 作者：Pablo风暴洋
+ * 功能：登录人员显示，更新服务器时间
+ */
+
+
+var startTime;
+
 $(function () {
     var adminTxt = $("#adminTxt");
     var nowTime = $("#nowTime");
@@ -7,7 +15,7 @@ $(function () {
 
     var logoutBtn = $('#logoutBtn');
 
-    var startTime;
+
 
     $.get(
         'ajax_current_worker',
@@ -41,6 +49,11 @@ $(function () {
     })
 });
 
+/**
+ * 时间格式转换
+ * @param value 毫秒值
+ * @returns {string} 格式化时间字符串返回
+ */
 function datefomate(value) {
     if (value == null || value == undefined) {
         return "";
@@ -55,3 +68,11 @@ function datefomate(value) {
         s = date.getSeconds();
     return Y + '-' + m + '-' + d + " " + H + ":" + i + ":" + s;
 };
+
+/**
+ * 获取当前服务器时间戳（毫秒）
+ * @returns {*}
+ */
+function getNowTime() {
+    return startTime;
+}

@@ -24,4 +24,6 @@ public class ResponseSchemeVo implements Serializable {
     private String start_time;
     private String end_time;
     private Double bonus;
+    private Double completed;
+    private Double current_load;
 }

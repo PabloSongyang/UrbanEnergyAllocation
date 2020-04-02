@@ -7,11 +7,12 @@
         <result column="adjust_target" property="adjust_target" jdbcType="DOUBLE"/>
         <result column="start_time" property="start_time" jdbcType="VARCHAR"/>
         <result column="end_time" property="end_time" jdbcType="VARCHAR"/>
-        <result column="bonus" property="end_time" jdbcType="DOUBLE"/>
+        <result column="completed" property="completed" jdbcType="DOUBLE"/>
+        <result column="current_load" property="current_load" jdbcType="DOUBLE"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        rsid,scheme_name,adjust_target,start_time,end_time,bonus
+        rsid,scheme_name,adjust_target,start_time,end_time,bonus,completed,current_load
     </sql>
 
     <insert id="addResponseScheme" parameterType="com.pablo.system.domain.ResponseSchemeVo">

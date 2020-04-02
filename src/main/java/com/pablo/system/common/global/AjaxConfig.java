@@ -51,4 +51,7 @@ public class AjaxConfig {
 
     //运行监测
     public static final String AJAX_OPERATION_MONITORING                       = "/ajax_operation_monitoring";
+
+    //负荷响应评价
+    public static final String AJAX_ADD_LOAD_RESPONSE                          = "/ajax_add_load_response";
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pablo.system.dao.LoadResponseMapper">
+    <resultMap id="BaseResultMap" type="com.pablo.system.domain.LoadResponseVo">
+        <id column="lrid" property="lrid" jdbcType="INTEGER"/>
+        <result column="rsid" property="rsid" jdbcType="INTEGER"/>
+        <result column="regulate_target" property="regulate_target" jdbcType="DOUBLE"/>
+        <result column="actual_regulation" property="actual_regulation" jdbcType="DOUBLE"/>
+        <result column="load_complete" property="load_complete" jdbcType="DOUBLE"/>
+        <result column="time_complete" property="time_complete" jdbcType="DOUBLE"/>
+        <result column="overall_merit" property="overall_merit" jdbcType="VARCHAR"/>
+        <result column="cur_date" property="cur_date" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        lrid,rsid,regulate_target,actual_regulation,load_complete,time_complete,overall_merit,cur_date
+    </sql>
+
+    <insert id="addLoadResponseNote" parameterType="com.pablo.system.domain.LoadResponseVo">
+        insert into tb_load_response(rsid,regulate_target,actual_regulation,load_complete,time_complete,overall_merit,cur_date) values (#{rsid},#{regulate_target},#{actual_regulation},#{load_complete},#{time_complete},#{overall_merit},#{cur_date})
+    </insert>
+</mapper>
