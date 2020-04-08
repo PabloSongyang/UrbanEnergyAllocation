@@ -130,7 +130,7 @@
                 #{zero_hour,jdbcType=DOUBLE},
             </if>
             <if test="one_hour != null">
-                #{one_hour,jdbcType=DOUBLE}r,
+                #{one_hour,jdbcType=DOUBLE},
             </if>
             <if test="two_hour != null">
                 #{two_hour,jdbcType=DOUBLE},
@@ -210,7 +210,7 @@
             and operate_date=#{operate_date}
         </if>
     </select>
-    
+
     <update id="updateOperationMonitor" parameterType="com.pablo.system.domain.OperationMonitoringVo">
         update tb_equipment_operation_monitoring
         <set>
@@ -218,7 +218,7 @@
                 zero_hour=#{zero_hour,jdbcType=DOUBLE},
             </if>
             <if test="one_hour != null">
-                one_hour=#{one_hour,jdbcType=DOUBLE}r,
+                one_hour=#{one_hour,jdbcType=DOUBLE},
             </if>
             <if test="two_hour != null">
                 two_hour=#{two_hour,jdbcType=DOUBLE},
@@ -287,5 +287,10 @@
                 twentythree_hour=#{twentythree_hour,jdbcType=DOUBLE},
             </if>
         </set>
+        where eid=#{eid} and operate_date=#{operate_date}
     </update>
+    
+    <select id="getHourPower" resultType="java.util.Map" parameterType="java.lang.String">
+        SELECT SUM(zero_hour) total_0,SUM(one_hour) total_1,SUM(two_hour) total_2,SUM(three_hour) total_3,SUM(four_hour) total_4,SUM(five_hour) total_5,SUM(six_hour) total_6,SUM(seven_hour) total_7,SUM(eight_hour) total_8,SUM(nine_hour) total_9,SUM(ten_hour) total_10,SUM(eleven_hour) total_11,SUM(twelve_hour) total_12,SUM(thirteen_hour) total_13,SUM(fourteen_hour) total_14,SUM(fifteen_hour) total_15,SUM(sixteen_hour) total_16,SUM(seventeen_hour) total_17,SUM(eighteen_hour) total_18,SUM(nineteen_hour) total_19,SUM(twenty_hour) total_20,SUM(twentyone_hour) total_21,SUM(twentytwo_hour) total_22,SUM(twentythree_hour) total_23 FROM tb_equipment_operation_monitoring where operate_date=#{operate_date}
+    </select>
 </mapper>

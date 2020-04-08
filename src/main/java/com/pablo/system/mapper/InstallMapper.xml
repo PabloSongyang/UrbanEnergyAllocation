@@ -37,7 +37,10 @@
                 and e.eid=#{eid}
             </if>
         </where>
-        order by e.eid LIMIT #{start_num},#{single_page_count}
+        order by e.eid
+        <if test="current_page != 0">
+            LIMIT #{start_num},#{single_page_count}
+        </if>
     </select>
 
     <select id="getRecordCount" resultType="java.lang.Integer">
@@ -54,5 +57,9 @@
         SELECT ei.eiid,ei.install_time,ee.eetname,ec.ctname,el.etname,e.* FROM tb_equipment_installed ei JOIN
         tb_equipment e ON e.eid=ei.eid JOIN tb_equipment_etype ee ON ee.eeid=e.eeid JOIN tb_equipment_ctype ec ON
         ec.ctid=e.ctid JOIN tb_equipment_ltype el ON el.etid=e.etid
+    </select>
+
+    <select id="getTotalPower" resultType="java.util.Map">
+        SELECT SUM(epower) total_power,MAX(install_time) last_install_date FROM tb_equipment_installed ei JOIN tb_equipment e ON e.eid=ei.eid
     </select>
 </mapper>

@@ -195,7 +195,8 @@
                                 <span class="xyxgpj_tjmb" id="adjust-target">调节目标：4098 KW</span>
                                 <span class="xyxgpj_sjtj" id="actual-regulation">实际调节：3228KW</span>
                                 <span class="tiaoshijian qiankong_tiaoshijian float-right">
-                                <input type="text" class="shi" id="xuanshi1" readonly value="2020-04-01">
+                                <input type="text" class="shi" id="xuanshi1" value="2020-04-01">
+                                    <input type="button" value="确定" style="background-color: #1571b0;text-align: left" id="confirm-btn">
                                 <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
                                 </span>
                                 <div class="clear"></div>
@@ -268,9 +269,11 @@
     </footer>
     <div class="control-sidebar-bg"></div>
 </div>
+
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="dist/js/app.min.js"></script>
+
 <!--<script src="dist/js/demo.js"></script>-->
 <script src="vince/js/nicescroll.js"></script>
 <script src="vince/js/demo.js"></script>
@@ -300,110 +303,7 @@
 
     /* 第三个图 */
     var myChart3 = echarts.init(document.getElementById('echarts_xyxgpj_three'));
-    option3 = {
-        title: {
-            text: '  负荷响应情况分析',
-            left: 'left',
-            textStyle: {
-                color: '#fff',
-                fontSize: 13,
-                fontWeight: 'normal'
-            },
-            padding: 13
-        },
-        textStyle: {color: '#fff'},
-        tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b} : {c}'
-        },
-        legend: {
-            orient: 'horizontal',
-            right: '3%',
-            top: '3%',
-            data: ['基线负荷', '实际负荷'],
-            textStyle: {color: '#fff'}
-        },
 
-        xAxis: {
-            type: 'category',
-            splitLine: {
-                show: true,
-                lineStyle: {
-                    color: 'rgba(43,46,56,0.8)'
-                }
-            },
-            data: ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时']
-        },
-        yAxis: {
-            axisLabel: {
-                formatter: '{value} kw'
-            },
-            splitLine: {
-                show: true,
-                lineStyle: {
-                    color: 'rgba(43,46,56,0.8)'
-                }
-            },
-            scale: true
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        series: [
-            {
-                name: '基线负荷',
-                type: 'line',
-                data: [55, 58, 56, 70, 150, 250, 210, 290, 310, 300, 320, 400, 410, 500, 480, 450, 300, 320, 300, 390, 410, 290, 150, 60],
-                markPoint: {
-                    data: [
-                        {
-                            name: '策略1开启时间',
-                            coord: ['11时', 400],
-                            name: '11时0分0秒',
-                            value: '<br/>策略1开启',
-                            label: {
-                                normal: {
-                                    show: 'true'
-                                }
-                            }
-                        },
-                        {
-                            name: '策略2开启时间',
-                            coord: ['14时', 480],
-                            name: '14时0分0秒',
-                            value: '<br/>策略2开启'
-                        },
-                        {
-                            name: '策略1关闭时间',
-                            coord: ['16时', 300],
-                            name: '16时0分0秒',
-                            value: '<br/>策略1关闭'
-                        },
-                        {
-                            name: '策略2关闭时间',
-                            coord: ['18时', 300],
-                            name: '18时0分0秒',
-                            value: '<br/>策略2关闭'
-                        },
-                    ]
-                },
-                symbol: 'circle',
-                symbolSize: 10,
-                lineStyle: {normal: {color: '#ff6b6b'}}
-            },
-            {
-                name: '实际负荷',
-                type: 'line',
-                data: [45, 61, 50, 75, 160, 240, 220, 290, 320, 305, 240, 320, 330, 380, 360, 400, 250, 310, 305, 381, 402, 293, 145, 61],
-                symbol: 'circle',
-                symbolSize: 10,
-                lineStyle: {normal: {color: '#1571b0'}}
-            }]
-    };
-    myChart3.setOption(option3);
 
     myChart1.resize();
     myChart2.resize();
@@ -425,7 +325,6 @@
     })
     // 响应效果评价页面图标切换
 
-
     var scheme_container = $('#scheme-container');
     var scheme_name_div = $('#scheme-name');
     var adjust_target = $('#adjust-target');
@@ -440,30 +339,170 @@
 
     var overall_merit_textarea = $('#overall_merit-textarea');
     var safe_btn = $('#safe-btn');
+    var date = $('#xuanshi1');
 
     $(function () {
         showResponseSchemeList();
 
-        // $.ajax({
-        //     url: 'ajax_operation_monitoring',
-        //     data: {
-        //         eid: 6,
-        //         twentyone_hour: 600.0,
-        //         operate_date: '2020-04-02'
-        //     },
-        //     dataType: "JSON",
-        //     type: "GET",
-        //     async: false
-        // }).done(function (data) {
-        //     if (data.code == 41) {
-        //         layer.msg(data.msg, {icon: 1, time: 1000})
-        //     } else {
-        //         layer.msg(data.msg, {icon: 5, time: 1000});
-        //     }
-        // });
-
-
+        getInstalledPowerRating();
     });
+
+    /**
+     * 获取安装后的总额定功率
+     */
+    function getInstallTotalPower(arr) {
+        $.getJSON(
+            'ajax_install_total_power',
+            function (data) {
+                if (data.code == 11) {
+                    layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                        var installedArr = [];
+
+                        for (var i = 0; i < 24; i++) {
+                            installedArr[i] = data.installed_total_power.total_power
+                        }
+                        showOperationHourTotalPower(installedArr, arr);
+                    });
+                } else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            }
+        )
+
+    }
+
+    /**
+     * 获取实际的功率
+     */
+    function getOperationHourTotalPower(today) {
+        date.val(today);
+
+        $.getJSON(
+            'ajax_operation_hour_total_power',
+            {
+                operate_date: date.val()
+            },
+            function (data) {
+                if (data.code == 11) {
+                    layer.msg(data.msg, {icon: 1, time: 1000}, function () {
+                        var operationPowerArr = [
+                            data.operation_hour_total_power.total_0.toFixed(1),
+                            data.operation_hour_total_power.total_1.toFixed(1),
+                            data.operation_hour_total_power.total_2.toFixed(1),
+                            data.operation_hour_total_power.total_3.toFixed(1),
+                            data.operation_hour_total_power.total_4.toFixed(1),
+                            data.operation_hour_total_power.total_5.toFixed(1),
+                            data.operation_hour_total_power.total_6.toFixed(1),
+                            data.operation_hour_total_power.total_7.toFixed(1),
+                            data.operation_hour_total_power.total_8.toFixed(1),
+                            data.operation_hour_total_power.total_9.toFixed(1),
+                            data.operation_hour_total_power.total_10.toFixed(1),
+                            data.operation_hour_total_power.total_11.toFixed(1),
+                            data.operation_hour_total_power.total_12.toFixed(1),
+                            data.operation_hour_total_power.total_13.toFixed(1),
+                            data.operation_hour_total_power.total_14.toFixed(1),
+                            data.operation_hour_total_power.total_15.toFixed(1),
+                            data.operation_hour_total_power.total_16.toFixed(1),
+                            data.operation_hour_total_power.total_17.toFixed(1),
+                            data.operation_hour_total_power.total_18.toFixed(1),
+                            data.operation_hour_total_power.total_19.toFixed(1),
+                            data.operation_hour_total_power.total_20.toFixed(1),
+                            data.operation_hour_total_power.total_21.toFixed(1),
+                            data.operation_hour_total_power.total_22.toFixed(1),
+                            data.operation_hour_total_power.total_23.toFixed(1)
+                        ];
+
+                        getInstallTotalPower(operationPowerArr);
+
+                    })
+                } else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            }
+        )
+    }
+
+    /**
+     * 获取已安装的设备的额定总功率
+     */
+    function getInstalledPowerRating() {
+        $.getJSON(
+            'ajax_install_list',
+            {
+                current_page: 0,
+                etname: null,
+                ctname: null,
+                eetname: null,
+                eid: null
+            },
+            function (data) {
+                if (data.code == 11) {
+                    $.each(data.installed_list, function (i, v) {
+                        //假数据，实际功率以额定功率30%上下浮动
+                        updateOperationMonitoring(v.eid, v.total_power)
+                    })
+                }
+            }
+        );
+    }
+
+    /**
+     * 更新负荷数据
+     */
+    function updateOperationMonitoring(eid, total_power) {
+        var today = getNowDate();
+        if (today == '-undefined-undefined'){
+            layer.msg('当前日期获取异常，请重新刷新', {icon: 5, time: 1000});
+            return
+        }
+        $.ajax({
+            url: 'ajax_operation_monitoring',
+            data: {
+                eid: eid,
+                zero_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                one_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                two_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                three_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                four_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                five_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                six_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                seven_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                eight_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                nine_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                ten_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                eleven_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                twelve_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                thirteen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                fourteen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                fifteen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                sixteen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                seventeen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                eighteen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                nineteen_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                twenty_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                twentyone_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                twentytwo_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                twentythree_hour: (Math.random() * total_power * 1.3 + total_power * 0.7).toFixed(1),
+                operate_date: today
+            },
+            dataType: "JSON",
+            type: "GET",
+            async: false
+        }).done(function (data) {
+            if (data.code == 41) {
+                layer.msg(data.msg, {icon: 1, time: 1000})
+            } else {
+                layer.msg(data.msg, {icon: 5, time: 1000});
+            }
+        });
+
+
+        getOperationHourTotalPower(today);
+
+        $('#confirm-btn').click(function () {
+            getOperationHourTotalPower(date.val());
+        })
+    }
 
     /**
      * 显示所有响应方案的列表
@@ -613,7 +652,7 @@
             },
             function (data) {
                 if (data.code == 1) {
-                    layer.msg(data.msg, {icon: 1, time: 1000},function () {
+                    layer.msg(data.msg, {icon: 1, time: 1000}, function () {
                         overall_merit_textarea.val('');
                     })
                 } else {
@@ -721,6 +760,119 @@
             }]
         };
         myChart2.setOption(option2);
+    }
+
+    /**
+     * 显示功率折线图
+     * @param ratingPower
+     * @param operationPower
+     */
+    function showOperationHourTotalPower(ratingPower, operationPower) {
+        option3 = {
+            title: {
+                text: '  负荷响应情况分析',
+                left: 'left',
+                textStyle: {
+                    color: '#fff',
+                    fontSize: 13,
+                    fontWeight: 'normal'
+                },
+                padding: 13
+            },
+            textStyle: {color: '#fff'},
+            tooltip: {
+                trigger: 'item',
+                formatter: '{a} <br/>{b} : {c}'
+            },
+            legend: {
+                orient: 'horizontal',
+                right: '3%',
+                top: '3%',
+                data: ['基线负荷', '实际负荷'],
+                textStyle: {color: '#fff'}
+            },
+
+            xAxis: {
+                type: 'category',
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgba(43,46,56,0.8)'
+                    }
+                },
+                data: ['0时', '1时', '2时', '3时', '4时', '5时', '6时', '7时', '8时', '9时', '10时', '11时', '12时', '13时', '14时', '15时', '16时', '17时', '18时', '19时', '20时', '21时', '22时', '23时']
+            },
+            yAxis: {
+                axisLabel: {
+                    formatter: '{value} W'
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgba(43,46,56,0.8)'
+                    }
+                },
+                scale: true
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            series: [
+                {
+                    name: '基线负荷',
+                    type: 'line',
+                    data: ratingPower,
+                    markPoint: {
+                        // data: [
+                        //     {
+                        //         name: '策略1开启时间',
+                        //         coord: ['11时', 400],
+                        //         name: '11时0分0秒',
+                        //         value: '<br/>策略1开启',
+                        //         label: {
+                        //             normal: {
+                        //                 show: 'true'
+                        //             }
+                        //         }
+                        //     },
+                        //     {
+                        //         name: '策略2开启时间',
+                        //         coord: ['14时', 480],
+                        //         name: '14时0分0秒',
+                        //         value: '<br/>策略2开启'
+                        //     },
+                        //     {
+                        //         name: '策略1关闭时间',
+                        //         coord: ['16时', 300],
+                        //         name: '16时0分0秒',
+                        //         value: '<br/>策略1关闭'
+                        //     },
+                        //     {
+                        //         name: '策略2关闭时间',
+                        //         coord: ['18时', 300],
+                        //         name: '18时0分0秒',
+                        //         value: '<br/>策略2关闭'
+                        //     },
+                        // ]
+                    },
+                    symbol: 'circle',
+                    symbolSize: 10,
+                    lineStyle: {normal: {color: '#ff6b6b'}}
+                },
+                {
+                    name: '实际负荷',
+                    type: 'line',
+                    data: operationPower,
+                    symbol: 'circle',
+                    symbolSize: 10,
+                    lineStyle: {normal: {color: '#1571b0'}}
+                }]
+        };
+
+        myChart3.setOption(option3);
     }
 </script>
 </body>

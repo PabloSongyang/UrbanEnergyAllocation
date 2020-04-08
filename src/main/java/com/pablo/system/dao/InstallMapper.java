@@ -53,4 +53,10 @@ public interface InstallMapper {
      * @return
      */
     List<Map<String,Object>> realTimeMonitoring();
+
+    /**
+     * 获取额定功率总和
+     * @return
+     */
+    Map<String,Object> getTotalPower();
 }

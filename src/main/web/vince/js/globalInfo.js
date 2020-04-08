@@ -16,7 +16,6 @@ $(function () {
     var logoutBtn = $('#logoutBtn');
 
 
-
     $.get(
         'ajax_current_worker',
         function (data) {
@@ -44,7 +43,7 @@ $(function () {
                 } else {
                     layer.msg(data.msg, {icon: 5, time: 1000});
                 }
-            },'json'
+            }, 'json'
         )
     })
 });
@@ -70,9 +69,46 @@ function datefomate(value) {
 };
 
 /**
+ * 时间格式转换
+ * @param value 毫秒值
+ * @returns {string} 格式化时间字符串返回
+ */
+function datefomate1(value) {
+    if (value == null || value == undefined) {
+        return "";
+    }
+    var date = new Date(value);
+
+    Y = date.getFullYear(),
+        m = date.getMonth() + 1,
+        d = date.getDate();
+
+
+    return Y + '-' + m + '-' + d;
+};
+
+/**
  * 获取当前服务器时间戳（毫秒）
  * @returns {*}
  */
 function getNowTime() {
     return startTime;
+}
+
+/**
+ * 获取当前服务器时间戳（年月日）
+ * @returns {*}
+ */
+function getNowDate() {
+    var date = datefomate1(startTime);
+
+    var year = date.split('-')[0];
+    var month = date.split('-')[1];
+    var day = date.split('-')[2];
+
+    if (month / 10 < 1)
+        month = '0' + month;
+    if (day / 10 < 1)
+        day = '0' + day;
+    return year + '-' + month + '-' + day;
 }

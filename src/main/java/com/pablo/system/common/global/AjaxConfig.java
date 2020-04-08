@@ -29,6 +29,7 @@ public class AjaxConfig {
     //安装
     public static final String AJAX_INSTALLED_EQUIPMENT                        = "/ajax_install_equipment";
     public static final String AJAX_INSTALLED_LIST                             = "/ajax_install_list";
+    public static final String AJAX_INSTALLED_TOTAL_POWER                      = "/ajax_install_total_power";
 
     //检修
     public static final String AJAX_OVERHAUL_EQUIPMENT                         = "/ajax_overhaul_equipment";
@@ -51,6 +52,7 @@ public class AjaxConfig {
 
     //运行监测
     public static final String AJAX_OPERATION_MONITORING                       = "/ajax_operation_monitoring";
+    public static final String AJAX_OPERATION_HOUR_TOTAL_POWER                 = "/ajax_operation_hour_total_power";
 
     //负荷响应评价
     public static final String AJAX_ADD_LOAD_RESPONSE                          = "/ajax_add_load_response";

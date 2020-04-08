@@ -2,6 +2,7 @@ package com.pablo.system.dao;
 
 import com.pablo.system.domain.OperationMonitoringVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,4 +30,10 @@ public interface OperationMonitoringMapper {
      * @return
      */
     OperationMonitoringVo queryEquipmentExisted(Map map);
+
+    /**
+     * 获取每个小时的所有已安装的设备的实际总功率
+     * @return
+     */
+    Map<String,Object> getHourPower(String operate_date);
 }

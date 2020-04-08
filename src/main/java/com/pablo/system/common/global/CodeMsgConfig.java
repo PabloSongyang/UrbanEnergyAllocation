@@ -22,6 +22,8 @@ public class CodeMsgConfig {
     public static final String CONTROL_STRATEGY_LIST                 = "control_strategy_list";
     public static final String RESPONSE_SCHEME                       = "response_scheme_list";
     public static final String RS_AND_CS                             = "rs_and_cs";
+    public static final String INSTALLED_TOTAL_POWER                 = "installed_total_power";
+    public static final String OPERATION_HOUR_TOTAL_POWER            = "operation_hour_total_power";
 
     //消息体
     public static final String MSG_ADD_SUCCESS                       = "添加成功";

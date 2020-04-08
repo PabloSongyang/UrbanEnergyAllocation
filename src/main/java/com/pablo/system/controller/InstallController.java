@@ -82,4 +82,26 @@ public class InstallController extends BaseController {
         }
         return super.getResultMap();
     }
+
+    /**
+     * 获取所有安装设备的总额定功率
+     *
+     * @return
+     */
+    @RequestMapping(AjaxConfig.AJAX_INSTALLED_TOTAL_POWER)
+    public Map<String, Object> ajax_InstalledTotalPower() {
+        super.getResultMap().clear();
+
+        Map<String, Object> list = installService.getTotalPower();
+        if (list.size() > 0) {
+            super.getResultMap().put(CodeMsgConfig.MSG, CodeMsgConfig.MSG_GET_SUCCESS);
+            super.getResultMap().put(CodeMsgConfig.CODE, CodeMsgConfig.CODE_GET_SUCCESS);
+            super.getResultMap().put(CodeMsgConfig.INSTALLED_TOTAL_POWER, list);
+        } else {
+            super.getResultMap().put(CodeMsgConfig.MSG, CodeMsgConfig.MSG_GET_FAILED);
+            super.getResultMap().put(CodeMsgConfig.CODE, CodeMsgConfig.CODE_GET_FAILED);
+        }
+
+        return super.getResultMap();
+    }
 }

@@ -153,7 +153,13 @@ public class InstallServiceImpl implements InstallService {
     }
 
     @Override
+
     public List<Map<String, Object>> realTimeMonitoring() {
         return installMapper.realTimeMonitoring();
+    }
+
+    @Override
+    public Map<String, Object> getTotalPower() {
+        return installMapper.getTotalPower();
     }
 }
